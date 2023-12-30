@@ -139,7 +139,7 @@ export default defineNuxtPlugin({
         {
           type: "section",
           order: 401,
-          title: "Organization Contact person",
+          title: "Organization contact person",
           conditions: is_legal,
         },
         {
@@ -210,7 +210,7 @@ export default defineNuxtPlugin({
         {
           type: "section",
           order: 501,
-          title: "Organization Address",
+          title: "Organization address",
           conditions: is_legal,
         },
         {
@@ -286,12 +286,27 @@ export default defineNuxtPlugin({
           label: "t:memberships_form_mtype",
           required: true,
           order: 610,
+          conditions: is_natural,
           choices: [
             {
               value: "active",
               label: "Active",
-              conditions: is_natural,
             },
+            {
+              value: "investing",
+              label: "Investing",
+            },
+          ],
+        },
+        {
+          type: "select",
+          key: "memberships__memberships_type",
+          expand: true,
+          label: "t:memberships_form_mtype",
+          required: true,
+          order: 610,
+          conditions: is_legal,
+          choices: [
             {
               value: "investing",
               label: "Investing",
