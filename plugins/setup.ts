@@ -47,12 +47,35 @@ export default defineNuxtPlugin({
       },
     ];
 
+    const is_investing = [
+      {
+        key: "memberships__memberships_type",
+        value: "investing",
+      },
+    ];
+
+    const is_active = [
+      {
+        key: "memberships__memberships_type",
+        value: "active",
+      },
+    ];
+
     form.value = {
       title: "MILA Membership Application",
       public: true,
       submitMode: "postNuxt",
       submitPath: "/api/memberships/register",
       submitLabel: "Submit application",
+      beforeSubmit: (data) => {
+        if (data.shares_options === "normal") {
+          data.memberships__memberships_shares = 9;
+        } else if (data.shares_options === "social") {
+          data.memberships__memberships_shares = 1;
+        }
+
+        return data;
+      },
       fields: [
         {
           type: "section",
@@ -123,8 +146,13 @@ export default defineNuxtPlugin({
           conditions: is_legal,
         },
         {
+          type: "clear",
+          order: 325,
+        },
+        {
           label: "Organization ID",
           key: "directus_users__memberships_organization_id",
+          description: "Firmenbuchnummer / Vereinsregisternummer",
           type: "text",
           order: 330,
           required: true,
@@ -315,15 +343,28 @@ export default defineNuxtPlugin({
         },
         {
           type: "select",
-          key: "memberships__memberships_shares_options",
+          key: "shares_options",
           expand: true,
           label: "How many shares do you want?",
-          description: "t:mila_form_shares",
           required: true,
           order: 620,
+          conditions: is_active,
           choices: [
             { label: "Regelanteil 180 €", value: "normal" },
             { label: "Sozialanteil 20 €", value: "social" },
+            { label: "Mehr Anteile", value: "more" },
+          ],
+        },
+        {
+          type: "select",
+          key: "shares_options",
+          expand: true,
+          label: "How many shares do you want?",
+          required: true,
+          order: 620,
+          conditions: is_investing,
+          choices: [
+            { label: "Regelanteil 180 €", value: "normal" },
             { label: "Mehr Anteile", value: "more" },
           ],
         },
@@ -350,6 +391,7 @@ export default defineNuxtPlugin({
           type: "description",
           order: 630,
           label: "Chosen shares",
+          boxed: true,
           description: "t:mila_form_shares_normal",
           conditions: shares_normal,
         },
@@ -357,6 +399,7 @@ export default defineNuxtPlugin({
           type: "description",
           order: 630,
           label: "Chosen shares",
+          boxed: true,
           description: "t:mila_form_shares_social",
           conditions: shares_social,
         },
@@ -364,6 +407,7 @@ export default defineNuxtPlugin({
           type: "description",
           order: 630,
           label: "Chosen shares",
+          boxed: true,
           description: "t:mila_form_shares_more",
           conditions: shares_more,
         },
@@ -417,12 +461,14 @@ export default defineNuxtPlugin({
         {
           label: "How did you hear about us?",
           key: "directus_users__mila_survey_contact",
+          width: "half",
           type: "textarea",
           order: 810,
         },
         {
           label: "What convinced you to join MILA?",
           key: "directus_users__mila_survey_motive",
+          width: "half",
           type: "textarea",
           order: 820,
         },
@@ -433,37 +479,45 @@ export default defineNuxtPlugin({
         {
           label: "Would you be interested to join a working group?",
           key: "directus_users__mila_groups_interested",
+          width: "half",
           description:
             "You can find more information about the working groups here: https://www.mila.wien/de/mitmachen/arbeitsgruppen/",
           type: "select",
           multiple: true,
           order: 830,
           choices: [
-            {
-              value: "1",
-              label: "Choice 1",
-            },
-            {
-              value: "2",
-              label: "Choice 2",
-            },
+            { label: "Sortiment", value: "Sortiment" },
+            { label: "Öffentlichkeitsarbeit", value: "Öffentlichkeitsarbeit" },
+            { label: "Minimarkt", value: "Minimarkt" },
+            { label: "Finanzen", value: "Finanzen" },
+            { label: "Genossenschaft", value: "Genossenschaft" },
+            { label: "Standort", value: "Standort" },
+            { label: "IT und Digitales", value: "IT und Digitales" },
+            { label: "Diversität", value: "Diversität" },
+            { label: "Events/Infogespräche", value: "Events/Infogespräche" },
           ],
         },
         {
           label: "What are your occupations/skills/interests?",
           key: "directus_users__mila_skills",
+          width: "half",
           type: "select",
           multiple: true,
           order: 840,
           choices: [
+            { label: "Handwerk (Elektrik, Tischlerei, …)", value: "handwerk" },
+            { label: "Einzelhandel", value: "handel" },
             {
-              value: "1",
-              label: "Choice 1",
+              label: "Genossenschaft/Partizipation/Organisationsentwicklung",
+              value: "geno",
             },
+            { label: "Finanzen (BWL, Buchhaltung,…)", value: "finanzen" },
             {
-              value: "2",
-              label: "Choice 2",
+              label: "Kommunikation (Medien, Grafik, Text,…)",
+              value: "kommunikation",
             },
+            { label: "IT/Digitales", value: "digit" },
+            { label: "Immobilien/Architektur/Planung", value: "immo" },
           ],
         },
         {
@@ -475,7 +529,7 @@ export default defineNuxtPlugin({
           type: "checkbox",
           key: "_statutes_approval",
           label: "Statutes",
-          description: "t:mila_form_check2",
+          content: "t:mila_form_check2",
           order: 920,
           width: "full",
           required: true,
@@ -484,7 +538,7 @@ export default defineNuxtPlugin({
           type: "checkbox",
           key: "_data_approval",
           label: "Data use",
-          description: "t:mila_form_check3",
+          content: "t:mila_form_check3",
           order: 930,
           width: "full",
           required: true,
@@ -493,7 +547,7 @@ export default defineNuxtPlugin({
           type: "checkbox",
           key: "directus_users__mila_pr_approved",
           label: "PR Work",
-          description: "t:mila_form_check1",
+          content: "t:mila_form_check1",
           order: 931,
           width: "full",
         },
