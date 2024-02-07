@@ -80,7 +80,7 @@ export default defineNuxtPlugin({
         {
           type: "section",
           order: 10,
-          title: "Willkommen bei MILA!",
+          title: "Welcome to MILA!",
           description: "t:mila_form_intro",
         },
         {
@@ -192,16 +192,28 @@ export default defineNuxtPlugin({
           required: true,
           choices: [
             {
-              value: "diverse",
-              label: "Diverse",
-            },
-            {
               value: "female",
               label: "Female",
             },
             {
               value: "male",
               label: "Male",
+            },
+            {
+              value: "diverse",
+              label: "Diverse",
+            },
+            {
+              value: "inter",
+              label: "Inter",
+            },
+            {
+              value: "open",
+              label: "Offen",
+            },
+            {
+              value: "no-answer",
+              label: "No answer",
             },
           ],
         },
@@ -350,9 +362,9 @@ export default defineNuxtPlugin({
           order: 620,
           conditions: is_active,
           choices: [
-            { label: "Regelanteil 180 €", value: "normal" },
-            { label: "Sozialanteil 20 €", value: "social" },
-            { label: "Mehr Anteile", value: "more" },
+            { label: "Standard (9 shares) 180€", value: "normal" },
+            { label: "Social (1 share) 20 €", value: "social" },
+            { label: "More (10 or more)", value: "more" },
           ],
         },
         {
@@ -364,14 +376,14 @@ export default defineNuxtPlugin({
           order: 620,
           conditions: is_investing,
           choices: [
-            { label: "Regelanteil 180 €", value: "normal" },
-            { label: "Mehr Anteile", value: "more" },
+            { label: "Standard (9 shares) 180€", value: "normal" },
+            { label: "More (10 or more)", value: "more" },
           ],
         },
         {
           type: "number",
           key: "memberships__memberships_shares",
-          label: "Number of shares (9 or more)",
+          label: "Number of shares (10 or more, 20€ per share)",
           required: true,
           order: 620,
           conditions: [
@@ -383,7 +395,7 @@ export default defineNuxtPlugin({
           validators: [
             {
               type: "min",
-              value: 9,
+              value: 10,
             },
           ],
         },
@@ -411,7 +423,6 @@ export default defineNuxtPlugin({
           description: "t:mila_form_shares_more",
           conditions: shares_more,
         },
-        // TODO: CALC TOTAL VALUE
         {
           type: "section",
           order: 700,
