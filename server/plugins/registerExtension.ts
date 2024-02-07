@@ -1,5 +1,5 @@
 import pkg from "../../package.json";
-// import m1 from "../migrations/001_settings";
+import survey_01 from "../schemas/survey_01";
 
 // Register extension on startup
 export default defineNitroPlugin(() => {
@@ -7,6 +7,6 @@ export default defineNitroPlugin(() => {
     name: "mila",
     description: pkg.description,
     version: pkg.version,
-    // schemas: [m1],
+    schemas: [survey_01],
   });
 });
