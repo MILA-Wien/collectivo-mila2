@@ -41,6 +41,7 @@ schema.fields = [
           { text: "IT und Digitales", value: "IT und Digitales" },
           { text: "Diversität", value: "Diversität" },
           { text: "Events/Infogespräche", value: "Events/Infogespräche" },
+          { text: "Personalkomitee", value: "Personalkomitee" },
         ],
       },
       translations: [
@@ -61,19 +62,15 @@ schema.fields = [
       special: ["cast-json"],
       options: {
         choices: [
-          { text: "Handwerk (Elektrik, Tischlerei, …)", value: "handwerk" },
+          { text: "Handwerk", value: "handwerk" },
           { text: "Einzelhandel", value: "handel" },
-          {
-            text: "Genossenschaft/Partizipation/Organisationsentwicklung",
-            value: "geno",
-          },
-          { text: "Finanzen (BWL, Buchhaltung,…)", value: "finanzen" },
-          {
-            text: "Kommunikation (Medien, Grafik, Text,…)",
-            value: "kommunikation",
-          },
-          { text: "IT/Digitales", value: "digit" },
+          { text: "Genossenschaft", value: "geno" },
+          { text: "Finanzen", value: "finanzen" },
+          { text: "Kommunikation", value: "kommunikation" },
+          { text: "Digitales", value: "digit" },
           { text: "Immobilien/Architektur/Planung", value: "immo" },
+          { text: "Diversität", value: "diversitaet" },
+          { text: "Personalführung", value: "personal" },
         ],
       },
       translations: [
@@ -109,6 +106,13 @@ schema.fields = [
         { language: "en-US", translation: "Survey Motivation" },
       ],
     },
+  },
+  {
+    collection: "directus_users",
+    field: "mila_pr_approved",
+    type: "boolean",
+    schema: { default_value: false, is_nullable: false },
+    meta: { interface: "boolean", special: ["cast-boolean"], required: true },
   },
 ];
 

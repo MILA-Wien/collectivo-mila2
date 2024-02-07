@@ -506,6 +506,11 @@ export default defineNuxtPlugin({
             { label: "IT und Digitales", value: "IT und Digitales" },
             { label: "Diversität", value: "Diversität" },
             { label: "Events/Infogespräche", value: "Events/Infogespräche" },
+            {
+              label:
+                "Personalkomitee (Beratung bei Personalagenden, Bewerbungsprozessen, etc.)",
+              value: "Personalkomitee",
+            },
           ],
         },
         {
@@ -529,6 +534,15 @@ export default defineNuxtPlugin({
             },
             { label: "IT/Digitales", value: "digit" },
             { label: "Immobilien/Architektur/Planung", value: "immo" },
+            {
+              label:
+                "Diversitäts-Kompetenz: (Erfahrungs-)Wissen zu Inklusionsprozessen & Diskriminierungstrukturen",
+              value: "diversitaet",
+            },
+            {
+              label: "Personalführung, -administration, -management",
+              value: "personal",
+            },
           ],
         },
         {
