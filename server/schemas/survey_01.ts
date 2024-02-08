@@ -120,10 +120,10 @@ schema.relations = [];
 
 const editor_fields: string[] = [
   "mila_survey_group",
+  "mila_survey_contact",
   "mila_survey_motivation",
   "mila_groups_interested",
   "mila_skills",
-  "mila_survey_contact",
 ];
 
 const user_fields: string[] = [];
