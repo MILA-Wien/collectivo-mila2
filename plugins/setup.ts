@@ -67,7 +67,7 @@ export default defineNuxtPlugin({
       submitMode: "postNuxt",
       submitPath: "/api/memberships/register",
       submitLabel: "Submit application",
-      beforeSubmit: (data) => {
+      beforeSubmit: async (data) => {
         if (data.shares_options === "normal") {
           data.memberships__memberships_shares = 9;
         } else if (data.shares_options === "social") {
@@ -329,11 +329,11 @@ export default defineNuxtPlugin({
           conditions: is_natural,
           choices: [
             {
-              value: "active",
+              value: "Aktiv",
               label: "Active",
             },
             {
-              value: "investing",
+              value: "Investierend",
               label: "Investing",
             },
           ],
@@ -348,7 +348,7 @@ export default defineNuxtPlugin({
           conditions: is_legal,
           choices: [
             {
-              value: "investing",
+              value: "Investierend",
               label: "Investing",
             },
           ],
