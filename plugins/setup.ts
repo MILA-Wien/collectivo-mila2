@@ -50,14 +50,14 @@ export default defineNuxtPlugin({
     const is_investing = [
       {
         key: "memberships__memberships_type",
-        value: "investing",
+        value: "Investierend",
       },
     ];
 
     const is_active = [
       {
         key: "memberships__memberships_type",
-        value: "active",
+        value: "Aktiv",
       },
     ];
 
