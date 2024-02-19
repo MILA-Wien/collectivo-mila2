@@ -228,7 +228,7 @@ export default defineNuxtPlugin({
           label: "Birthday",
           key: "directus_users__memberships_birthday",
           type: "date",
-          birthdate: true,
+          width: "lg",
           order: 450,
           required: true,
           conditions: is_natural,
