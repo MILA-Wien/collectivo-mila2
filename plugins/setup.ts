@@ -61,6 +61,18 @@ export default defineNuxtPlugin({
       },
     ];
 
+    const is_authenticated = [
+      {
+        type: "authenticated",
+      },
+    ];
+
+    const is_not_authenticated = [
+      {
+        type: "notAuthenticated",
+      },
+    ];
+
     form.value = {
       title: "MILA Membership Application",
       public: true,
@@ -106,6 +118,8 @@ export default defineNuxtPlugin({
           type: "section",
           order: 200,
           title: "User account",
+          description: "t:mila_form_account",
+          conditions: is_not_authenticated,
         },
         {
           key: "directus_users__email",
@@ -114,6 +128,7 @@ export default defineNuxtPlugin({
           order: 210,
           required: true,
           icon: "i-mi-mail",
+          conditions: is_not_authenticated,
         },
         {
           label: "Password",
@@ -122,6 +137,7 @@ export default defineNuxtPlugin({
           order: 220,
           required: true,
           icon: "i-mi-lock",
+          conditions: is_not_authenticated,
         },
         {
           type: "section",
