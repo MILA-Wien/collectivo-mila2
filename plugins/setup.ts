@@ -61,12 +61,6 @@ export default defineNuxtPlugin({
       },
     ];
 
-    const is_authenticated = [
-      {
-        type: "authenticated",
-      },
-    ];
-
     const is_not_authenticated = [
       {
         type: "notAuthenticated",
@@ -84,6 +78,13 @@ export default defineNuxtPlugin({
           data.memberships__memberships_shares = 9;
         } else if (data.shares_options === "social") {
           data.memberships__memberships_shares = 1;
+        }
+
+        if (
+          !data.memberships__memberships_shares ||
+          data.memberships__memberships_shares <= 0
+        ) {
+          throw new Error("Incorrect number of shares.");
         }
 
         return data;
