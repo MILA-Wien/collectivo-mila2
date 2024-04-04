@@ -2,6 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["@collectivo/collectivo", "@collectivo/memberships"],
+  runtimeConfig: {
+    lotzappMandant: "",
+    lotzappSepaId: "",
+    lotzappTransferId: "",
+    lotzappUser: "",
+    lotzappPassword: "",
+  },
   i18n: {
     langDir: "./lang",
     defaultLocale: "de",
