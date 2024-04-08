@@ -106,7 +106,7 @@ async function createLotzappInvoice(user: any, invoice: any) {
   const entry = invoice.payments_entries[0];
 
   const data = {
-    datum: invoice.payments_date_issued, // .strftime("%Y-%m-%d"),
+    datum: invoice.payments_date_issued,
     adresse: user.lotzapp_id,
     zahlungsmethode: zahlungsmethode,
     positionen: [
@@ -114,12 +114,10 @@ async function createLotzappInvoice(user: any, invoice: any) {
         name: "Genossenschaftsanteil",
         wert: entry.payments_quantity.toString(),
         einheit: "mal",
-        netto: entry.payments_price.toString(),
+        netto: entry.payments_price.toString().slice(0, -2),
       },
     ],
   };
-
-  console.log(data);
 
   const endpoint = lotzapp_url + "ar/";
 
