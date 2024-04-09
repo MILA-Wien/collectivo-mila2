@@ -31,7 +31,8 @@ async function createOrUpdateLotzappUser(user: any) {
       (user.memberships_door ?? ""),
     plz: user.memberships_postcode,
     ort: user.memberships_city,
-    bankeinzug: user.payments_type == "sepa" ? "1" : "0",
+    bankeinzug:
+      user.payments_type == "sepa" ? lotzapp_sepa_id : lotzapp_transfer_id,
     mail: [{ email: user.email }],
     bankverbindungen: [{ IBAN: user.payments_account_iban }],
   };
@@ -174,6 +175,15 @@ async function syncItem(item: any) {
 
   user.lotzapp_id = await createOrUpdateLotzappUser(user);
 
+  if (
+    user.lotzapp_id == null ||
+    user.lotzapp_id == "" ||
+    user.lotzapp_id == undefined
+  ) {
+    console.log("Aborting since no lotzapp id was returned");
+    return;
+  }
+
   await directus.request(
     updateUser(user.id, {
       lotzapp_id: user.lotzapp_id,
@@ -181,6 +191,11 @@ async function syncItem(item: any) {
   );
 
   const invoiceID = await createLotzappInvoice(user, item);
+
+  if (invoiceID == null || invoiceID == "" || invoiceID == undefined) {
+    console.log("Aborting since no invoice id was returned");
+    return;
+  }
 
   await directus.request(
     updateItem("payments_invoices_out", item.id, {
