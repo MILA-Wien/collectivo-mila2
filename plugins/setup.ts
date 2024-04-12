@@ -283,7 +283,7 @@ export default defineNuxtPlugin({
           type: "text",
           key: "directus_users__memberships_streetnumber",
           order: 511,
-          width: "xs",
+          width: "sm",
           required: true,
         },
         {
@@ -291,21 +291,21 @@ export default defineNuxtPlugin({
           key: "directus_users__memberships_stair",
           type: "text",
           order: 512,
-          width: "xs",
+          width: "sm",
         },
         {
           label: "Door",
           key: "directus_users__memberships_door",
           type: "text",
           order: 513,
-          width: "xs",
+          width: "sm",
         },
         {
           label: "Postcode",
           key: "directus_users__memberships_postcode",
           type: "text",
           order: 514,
-          width: "xs",
+          width: "sm",
           required: true,
         },
         {
@@ -452,7 +452,7 @@ export default defineNuxtPlugin({
           key: "directus_users__payments_type",
           type: "select",
           order: 710,
-          // width: "full",
+          // width: "lg",
           required: true,
           choices: [
             {
@@ -491,14 +491,14 @@ export default defineNuxtPlugin({
         {
           label: "How did you hear about us?",
           key: "directus_users__mila_survey_contact",
-          width: "half",
+          width: "md",
           type: "textarea",
           order: 810,
         },
         {
           label: "What convinced you to join MILA?",
           key: "directus_users__mila_survey_motive",
-          width: "half",
+          width: "md",
           type: "textarea",
           order: 820,
         },
@@ -509,7 +509,7 @@ export default defineNuxtPlugin({
         {
           label: "Would you be interested to join a working group?",
           key: "directus_users__mila_groups_interested",
-          width: "half",
+          width: "md",
           description:
             "You can find more information about the working groups here: https://www.mila.wien/de/mitmachen/arbeitsgruppen/",
           type: "select",
@@ -535,7 +535,7 @@ export default defineNuxtPlugin({
         {
           label: "What are your occupations/skills/interests?",
           key: "directus_users__mila_skills",
-          width: "half",
+          width: "md",
           type: "select",
           multiple: true,
           order: 840,
@@ -575,7 +575,7 @@ export default defineNuxtPlugin({
           label: "Statutes",
           content: "t:mila_form_check2",
           order: 920,
-          width: "full",
+          width: "lg",
           required: true,
         },
         {
@@ -584,7 +584,7 @@ export default defineNuxtPlugin({
           label: "Data use",
           content: "t:mila_form_check3",
           order: 930,
-          width: "full",
+          width: "lg",
           required: true,
         },
         {
@@ -593,7 +593,7 @@ export default defineNuxtPlugin({
           label: "PR Work",
           content: "t:mila_form_check1",
           order: 931,
-          width: "full",
+          width: "lg",
         },
         {
           type: "description",
