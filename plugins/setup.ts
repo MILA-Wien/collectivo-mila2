@@ -511,7 +511,7 @@ export default defineNuxtPlugin({
           key: "directus_users__mila_groups_interested",
           width: "md",
           description:
-            "You can find more information about the working groups here: https://www.mila.wien/de/mitmachen/arbeitsgruppen/",
+            "You can find more information about the working groups here: https://www.mila.wien/mitmachen/arbeitsgruppen/",
           type: "select",
           multiple: true,
           order: 830,
