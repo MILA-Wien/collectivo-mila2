@@ -31,8 +31,7 @@ async function createOrUpdateLotzappUser(user: any) {
       (user.memberships_door ?? ""),
     plz: user.memberships_postcode,
     ort: user.memberships_city,
-    bankeinzug:
-      user.payments_type == "sepa" ? lotzapp_sepa_id : lotzapp_transfer_id,
+    bankeinzug: user.payments_type == "sepa" ? "1" : "0",
     mail: [{ email: user.email }],
     bankverbindungen: [{ IBAN: user.payments_account_iban }],
   };
@@ -102,7 +101,7 @@ async function createLotzappInvoice(user: any, invoice: any) {
 
   // # Prepare invoice data for lotzapp
   const zahlungsmethode =
-    user.payment_type == "sepa" ? lotzapp_sepa_id : lotzapp_transfer_id;
+    user.payments_type == "sepa" ? lotzapp_sepa_id : lotzapp_transfer_id;
 
   const entry = invoice.payments_entries[0];
 
