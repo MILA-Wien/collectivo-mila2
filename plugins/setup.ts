@@ -613,6 +613,13 @@ export default defineNuxtPlugin({
           label: "Revocation",
           description: "t:mila_form_final3",
         },
+        {
+          type: "description",
+          order: 970,
+          label: "Vereinsmitgliedschaft",
+          description:
+            "Wenn du bereits Mitglied des Vereins MILA bist, wirst du mit der Registrierung bei der Genossenschaft NICHT automatisch vom Verein abgemeldet. Der Verein betreibt aktive Öffentlichkeits- und Bildungsarbeit für die Idee von MILA und wir freuen uns, wenn du weiterhin Vereinsmitglied bleiben möchtest. Wenn du das nicht möchtest, dann schick uns ein kurzes Mail an mitmachen@mila.wien mit der Vereinskündigung.",
+        },
       ],
     };
   },
